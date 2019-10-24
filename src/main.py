@@ -45,6 +45,13 @@ def findClosestNumber():
             listClosestAuthors.append(submissionAuthor)
     return listClosestAuthors
 
+def wiki(subreddit, winner):
+    wikipage = subreddit.wiki['SPX Prediction Leaderboards']
+    content = wikipage.content_md
+    print(content)
+    #check user
+    #increment user
+
 # main
 # setting up daily post parse
 subreddit = reddit.subreddit("thewallstreet")
@@ -75,4 +82,6 @@ for submission in subreddit.hot(limit=15):
                     listWinners = findClosestNumber()
                     for winner in listWinners:
                         print(winner)
+                        # perform subreddit wiki functions
+                        wiki(subreddit, winner)
                     break
