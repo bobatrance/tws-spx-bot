@@ -31,8 +31,8 @@ def checkDuplicateAndAddContestEntry(contestComment):
 def getFloatTodaySpxClose():
     if DEBUG:
         with open('../secret/query.json') as f:
-            data = json.load(f.decode())
-        return float(data.get("Time Series (Daily)").get("2019-12-13".get("4. close")))
+            data = json.load(f)
+        return float(data.get("Time Series (Daily)").get("2019-12-13").get("4. close"))
     else:
         with urllib.request.urlopen("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPX&outputsize=compact&apikey="+ alphavantage_api_key) as url:
             data = json.loads(url.read().decode())
@@ -76,6 +76,11 @@ def ParseComments(subreddit):
             # do logic close contest and parse winner
             commentCloseContest = "~~" + commentStartContest.body + "~~" + "\n\nEdit: Contest now closed!"
             commentStartContest.edit(commentCloseContest)
+            if DEBUG:
+                print("~~~~~~~~ CONTEST SUBMISSIONS ~~~~~~~~")
+                for entry in mapContestSubmissions:
+                    print(entry.name + ", " + str(mapContestSubmissions.get(entry)))
+                print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             listWinners = findClosestNumber()
             for winner in listWinners:
                 print(winner)
