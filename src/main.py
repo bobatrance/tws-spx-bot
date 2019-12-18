@@ -52,7 +52,7 @@ def findClosestNumber():
     return listClosestAuthors
 
 def wiki(subreddit, winner):
-    wikipage = subreddit.wiki['SPX Prediction Leaderboards']
+    wikipage = subreddit.wiki['test/leaderboard']
     content = wikipage.content_md
     print(content)
     #check user
