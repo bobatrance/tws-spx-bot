@@ -51,6 +51,13 @@ def findClosestNumber():
             listClosestAuthors.append(submissionAuthor)
     return listClosestAuthors
 
+def wiki(subreddit, winner):
+    wikipage = subreddit.wiki['test/leaderboard']
+    content = wikipage.content_md
+    print(content)
+    #check user
+    #increment user
+
 def ParseComments(subreddit):
     if subreddit.user_is_subscriber:
         if not subreddit.user_is_banned:
@@ -77,6 +84,8 @@ def ParseComments(subreddit):
             listWinners = findClosestNumber()
             for winner in listWinners:
                 print(winner)
+                # perform subreddit wiki functions
+                wiki(subreddit, winner)
                 break
 
 # main
@@ -100,4 +109,4 @@ for submission in subreddit.hot(limit=15):
             if submission.author == "AutoModerator":
                 print("Found today's daily!")
                 ParseComments(subreddit)
-            
+                
